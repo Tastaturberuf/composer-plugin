@@ -101,7 +101,7 @@ class LegacyContaoModuleInstaller extends AbstractModuleInstaller
 
         $iterator = new RecursiveDirectoryIterator(
             $root . '/' . $directory,
-            RecursiveDirectoryIterator::SKIP_DOTS | RecursiveDirectoryIterator::UNIX_PATHS
+            (RecursiveDirectoryIterator::SKIP_DOTS | RecursiveDirectoryIterator::UNIX_PATHS)
         );
 
         /** @var SplFileInfo $file */
