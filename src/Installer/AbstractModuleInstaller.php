@@ -218,7 +218,7 @@ abstract class AbstractModuleInstaller extends LibraryInstaller
             return;
         }
 
-        $packageRoot = $this->getInstallPath($package);
+        $packageRoot = $this->filesystem->normalizePath($this->getInstallPath($package));
         $actions     = [];
 
         // Check the file map first and make sure nothing exists.
@@ -452,7 +452,7 @@ abstract class AbstractModuleInstaller extends LibraryInstaller
 
         if (file_exists($target)) {
             // Target link already exists and is correct, do nothing
-            if (is_link($target) && $source === readlink($target)) {
+            if (is_link($target) && $source === $this->filesystem->normalizePath(readlink($target))) {
                 return false;
             }
 
