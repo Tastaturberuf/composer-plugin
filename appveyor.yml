@@ -6,9 +6,10 @@ clone_folder: c:\projects\contaocommunityalliance-composer-plugin
 cache:
   - '%LOCALAPPDATA%\Composer\files'
 
-matrix:
-  - php_zip: php-5.6.28-Win32-VC11-x86.zip
-  - php_zip: php-7.0.13-Win32-VC11-x86.zip
+environment:
+  matrix:
+    - php_zip: php-5.6.28-Win32-VC11-x86.zip
+    - php_zip: php-7.0.13-Win32-VC11-x86.zip
 
 init:
   - SET PATH=c:\php;%PATH%
