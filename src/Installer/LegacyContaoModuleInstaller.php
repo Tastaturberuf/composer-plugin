@@ -93,13 +93,16 @@ class LegacyContaoModuleInstaller extends AbstractModuleInstaller
     private function getFileMap(PackageInterface $package, $directory)
     {
         $files = [];
-        $root  = $this->getInstallPath($package);
+        $root  = $this->filesystem->normalizePath($this->getInstallPath($package));
 
         if (!file_exists($root . '/' . $directory)) {
             return [];
         }
 
-        $iterator = new RecursiveDirectoryIterator($root . '/' . $directory, RecursiveDirectoryIterator::SKIP_DOTS);
+        $iterator = new RecursiveDirectoryIterator(
+            $root . '/' . $directory,
+            RecursiveDirectoryIterator::SKIP_DOTS | RecursiveDirectoryIterator::UNIX_PATHS
+        );
 
         /** @var SplFileInfo $file */
         foreach (new RecursiveIteratorIterator($iterator, RecursiveIteratorIterator::CHILD_FIRST) as $file) {
