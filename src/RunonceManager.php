@@ -58,8 +58,8 @@ class RunonceManager
      */
     public function __construct($targetFile, Filesystem $filesystem = null)
     {
-        $this->targetFile = $targetFile;
         $this->filesystem = $filesystem ?: new Filesystem();
+        $this->targetFile = $this->filesystem->normalizePath($targetFile);
     }
 
     /**
@@ -71,6 +71,7 @@ class RunonceManager
      */
     public function addFile($path)
     {
+        $path = $this->filesystem->normalizePath($path);
         if (!is_readable($path) || !is_file($path)) {
             return;
         }
