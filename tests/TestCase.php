@@ -53,7 +53,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
         $this->filesystem->ensureDirectoryExists($this->tempdir);
 
-        $this->tempdir = realpath($this->tempdir);
+        $this->tempdir = $this->unixPath(realpath($this->tempdir));
     }
 
     /**
@@ -64,5 +64,22 @@ class TestCase extends \PHPUnit_Framework_TestCase
         $this->filesystem->removeDirectory($this->tempdir);
 
         parent::tearDown();
+    }
+
+    /**
+     * Ensure we have an Unix like path.
+     *
+     * @param string $path The path to unix-ify.
+     *
+     * @return string|false
+     */
+    public function unixPath($path)
+    {
+        // Normalize separators on Windows
+        if ('\\' === DIRECTORY_SEPARATOR) {
+            return str_replace('\\', '/', $path);
+        }
+
+        return $path;
     }
 }

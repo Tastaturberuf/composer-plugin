@@ -59,7 +59,7 @@ class LegacyContaoModuleInstallerTest extends TestCase
         $repo      = $this->mockRepository();
         $package   = $this->mockPackage();
 
-        $basePath = $installer->getInstallPath($package);
+        $basePath = $this->unixPath($installer->getInstallPath($package));
 
         $this->filesystem->ensureDirectoryExists($basePath . '/TL_ROOT/system/modules/foobar/config');
         touch($basePath . '/TL_ROOT/system/modules/foobar/config/config.php');
@@ -70,7 +70,7 @@ class LegacyContaoModuleInstallerTest extends TestCase
         $this->assertTrue(is_link($basePath . '/../../../system/modules/foobar/config/config.php'));
         $this->assertEquals(
             $basePath . '/TL_ROOT/system/modules/foobar/config/config.php',
-            realpath($basePath . '/../../../system/modules/foobar/config/config.php')
+            $this->unixPath(realpath($basePath . '/../../../system/modules/foobar/config/config.php'))
         );
     }
 
@@ -85,7 +85,7 @@ class LegacyContaoModuleInstallerTest extends TestCase
         $repo      = $this->mockRepository();
         $package   = $this->mockPackage();
 
-        $basePath = $installer->getInstallPath($package);
+        $basePath = $this->unixPath($installer->getInstallPath($package));
 
         $this->filesystem->ensureDirectoryExists($basePath . '/TL_ROOT/system/modules/foobar/config');
         touch($basePath . '/TL_ROOT/system/modules/foobar/config/config.php');
@@ -96,7 +96,7 @@ class LegacyContaoModuleInstallerTest extends TestCase
         $this->assertTrue(is_link($basePath . '/../../../system/modules/foobar/config/config.php'));
         $this->assertEquals(
             $basePath . '/TL_ROOT/system/modules/foobar/config/config.php',
-            realpath($basePath . '/../../../system/modules/foobar/config/config.php')
+            $this->unixPath(realpath($basePath . '/../../../system/modules/foobar/config/config.php'))
         );
 
         $this->assertEquals(
@@ -119,7 +119,7 @@ class LegacyContaoModuleInstallerTest extends TestCase
         $repo      = $this->mockRepository();
         $package   = $this->mockPackage();
 
-        $basePath = $installer->getInstallPath($package);
+        $basePath = $this->unixPath($installer->getInstallPath($package));
 
         $this->filesystem->ensureDirectoryExists($basePath . '/TL_ROOT/system/modules/foobar/config');
         touch($basePath . '/TL_ROOT/system/modules/foobar/config/config.php');
@@ -136,7 +136,7 @@ class LegacyContaoModuleInstallerTest extends TestCase
         $this->assertTrue(is_link($basePath . '/../../../system/modules/foobar/config/config.php'));
         $this->assertEquals(
             $basePath . '/TL_ROOT/system/modules/foobar/config/config.php',
-            realpath($basePath . '/../../../system/modules/foobar/config/config.php')
+            $this->unixPath(realpath($basePath . '/../../../system/modules/foobar/config/config.php'))
         );
     }
 
@@ -153,7 +153,7 @@ class LegacyContaoModuleInstallerTest extends TestCase
         $repo      = $this->mockRepository();
         $package   = $this->mockPackage();
 
-        $basePath = $installer->getInstallPath($package);
+        $basePath = $this->unixPath($installer->getInstallPath($package));
 
         $this->filesystem->ensureDirectoryExists($basePath . '/TL_ROOT/system/modules/foobar/config');
         touch($basePath . '/TL_ROOT/system/modules/foobar/config/config.php');
@@ -175,7 +175,7 @@ class LegacyContaoModuleInstallerTest extends TestCase
         $repo      = $this->mockRepository();
         $package   = $this->mockPackage();
 
-        $basePath = $installer->getInstallPath($package);
+        $basePath = $this->unixPath($installer->getInstallPath($package));
 
         $this->filesystem->ensureDirectoryExists($basePath . '/TL_ROOT/system/modules/foobar/config');
         touch($basePath . '/TL_ROOT/system/modules/foobar/config/config.php');
@@ -203,7 +203,7 @@ class LegacyContaoModuleInstallerTest extends TestCase
         $repo      = $this->mockRepository();
         $package   = $this->mockPackage();
 
-        $basePath = $installer->getInstallPath($package);
+        $basePath = $this->unixPath($installer->getInstallPath($package));
 
         $this->filesystem->ensureDirectoryExists($basePath . '/TL_ROOT/system/modules/foobar/config');
         touch($basePath . '/TL_ROOT/system/modules/foobar/config/config.php');
@@ -224,7 +224,7 @@ class LegacyContaoModuleInstallerTest extends TestCase
         $repo      = $this->mockRepository();
         $package   = $this->mockPackage();
 
-        $basePath = $installer->getInstallPath($package);
+        $basePath = $this->unixPath($installer->getInstallPath($package));
 
         $this->filesystem->ensureDirectoryExists($basePath . '/TL_ROOT/system/modules/foobar/config');
         touch($basePath . '/TL_ROOT/system/modules/foobar/config/config.php');
@@ -248,7 +248,7 @@ class LegacyContaoModuleInstallerTest extends TestCase
         $repo      = $this->mockRepository();
         $package   = $this->mockPackage();
 
-        $basePath = $installer->getInstallPath($package);
+        $basePath = $this->unixPath($installer->getInstallPath($package));
 
         $this->filesystem->ensureDirectoryExists($basePath . '/TL_ROOT/system/modules/foobar/config');
         touch($basePath . '/TL_ROOT/system/modules/foobar/config/config.php');

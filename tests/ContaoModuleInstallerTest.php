@@ -66,7 +66,7 @@ class ContaoModuleInstallerTest extends TestCase
         $runonce
             ->expects($this->once())
             ->method('addFile')
-            ->with($installer->getInstallPath($package) . '/src/Resources/contao/config/update.php');
+            ->with($this->unixPath($installer->getInstallPath($package)) . '/src/Resources/contao/config/update.php');
 
         $installer->install($repo, $package);
     }
@@ -91,7 +91,7 @@ class ContaoModuleInstallerTest extends TestCase
         $runonce
             ->expects($this->once())
             ->method('addFile')
-            ->with($installer->getInstallPath($target) . '/src/Resources/contao/config/update.php');
+            ->with($this->unixPath($installer->getInstallPath($target)) . '/src/Resources/contao/config/update.php');
 
         $installer->update($repo, $initial, $target);
     }
@@ -114,7 +114,7 @@ class ContaoModuleInstallerTest extends TestCase
             ]
         );
 
-        $basePath = $installer->getInstallPath($package);
+        $basePath = $this->unixPath($installer->getInstallPath($package));
 
         $this->filesystem->ensureDirectoryExists($basePath . '/config');
         touch($basePath . '/config/config.php');
@@ -125,7 +125,7 @@ class ContaoModuleInstallerTest extends TestCase
         $this->assertTrue(is_link($basePath . '/../../../system/modules/foobar/config/config.php'));
         $this->assertEquals(
             $basePath . '/config/config.php',
-            realpath($basePath . '/../../../system/modules/foobar/config/config.php')
+            $this->unixPath(realpath($basePath . '/../../../system/modules/foobar/config/config.php'))
         );
     }
 
@@ -147,7 +147,7 @@ class ContaoModuleInstallerTest extends TestCase
             ]
         );
 
-        $basePath = $installer->getInstallPath($package);
+        $basePath = $this->unixPath($installer->getInstallPath($package));
 
         $this->filesystem->ensureDirectoryExists($basePath . '/config');
         touch($basePath . '/config/config.php');
@@ -161,7 +161,7 @@ class ContaoModuleInstallerTest extends TestCase
         $this->assertTrue(is_link($basePath . '/../../../system/modules/foobar/config/config.php'));
         $this->assertEquals(
             $basePath . '/config/config.php',
-            realpath($basePath . '/../../../system/modules/foobar/config/config.php')
+            $this->unixPath(realpath($basePath . '/../../../system/modules/foobar/config/config.php'))
         );
     }
 
