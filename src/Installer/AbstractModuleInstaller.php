@@ -261,6 +261,15 @@ abstract class AbstractModuleInstaller extends LibraryInstaller
 
             if (Platform::isWindows()) {
                 $success = @symlink($source, $target);
+                
+                // try to use mklink for symlinking
+                if ( !$success ) {
+                    $cmd = sprintf('mklink /j %s %s',
+                        str_replace('/', '\\', $target),
+                        str_replace('/', '\\', $source)
+                    );
+                    $success = exec($cmd);
+                }
             } else {
                 $success = $this->filesystem->relativeSymlink($source, $target);
             }
